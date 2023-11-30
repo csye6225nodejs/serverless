@@ -55,12 +55,56 @@ export const handler = async (event, context) => {
    
 
         const sender_email = process.env.SENDER_EMAIL;
-        const receiver_email = 'tiruchunapalli.a@northeastern.edu';
+        const receiver_email = email_val;
         console.log(receiver_email);
 
-        const email_subject = 'Regarding your assignment submission';
-        const email_body = `The submission url ${submissionUrl} for Assignment: ${assignmentId} and no of times you have submitted is ${noOfSubmissions} `;
-        const email_body2 = `The submission url ${submissionUrl} for Assignment: ${assignmentId} is not valid and no of times you have submitted is ${noOfSubmissions}`;
+        
+
+        const email_subject = 'Regarding Your Assignment Submission';
+
+const email_body = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valid Submission</title>
+</head>
+<body>
+  <p>Dear Student,</p>
+  <p>We have received your submission for Assignment ${assignmentId}.</p>
+  <ul>
+    <li><strong>Submission URL:</strong> ${submissionUrl}</li>
+    <li><strong>Number of Submissions:</strong> ${noOfSubmissions}</li>
+  </ul>
+  <p>Thank you for your participation.</p>
+  <p>Best regards,<br>${sender_email}</p>
+</body>
+</html>
+`;
+
+const email_body2 = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invalid Submission</title>
+</head>
+<body>
+  <p>Dear Student,</p>
+  <p>We regret to inform you that your submission for Assignment ${assignmentId} is not valid.</p>
+  <ul>
+    <li><strong>Submission URL:</strong> ${submissionUrl}</li>
+    <li><strong>Number of Submissions:</strong> ${noOfSubmissions}</li>
+  </ul>
+  <p>Please review your submission and make necessary corrections.</p>
+  <p>Best regards,<br>${sender_email}</p>
+</body>
+</html>
+`;
         //await sendMail(sender_email, receiver_email, email_subject, email_body, submissionUrl,2,assignmentId);
         if(zipexists === 0){
             console.log("in zip exists is wrong loop");
