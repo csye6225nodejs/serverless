@@ -41,10 +41,10 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
+serverless.zip
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
-
+.DS_Store
 # TypeScript cache
 *.tsbuildinfo
 
